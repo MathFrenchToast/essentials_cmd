@@ -93,3 +93,17 @@ same as above using --where= option
 
 using MysqlDump as of v.8 add  --column-statistics=0 flag
 
+
+# work with transaction
+first disable autocommit,
+then start tx, 
+run your sql stmt
+close the tx with commit (ok) or rollback (ko)
+```
+SET autocommit = 0;
+START TRANSACTION;
+-- here your sql stmt
+COMMIT;
+```
+
+
