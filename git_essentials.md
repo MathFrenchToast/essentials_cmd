@@ -122,13 +122,13 @@ git log <<branch_name>> --no-merges  --since="6 day ago"
 ## rename a branch
 `git branch -m <oldname> <newname>`
 
-# commit on wrong branch
+## commit on wrong branch
 on wrong branch_name
 `git reset HEAD~1`
 then go to new branch
 then add and commit
 
-# push a local folder as a new remote repo
+## push a local folder as a new remote repo
 for a local repo 
 first create on Gitlab an empty project
 cd in the directory
@@ -141,5 +141,18 @@ then
 
 for a remote repo see :
 https://superuser.com/questions/1412078/bring-a-local-folder-to-remote-git-repo/1412081
+
+## clone a whole group at once
+create a personnal access token with api access (in gitlab : 'user settings > access tokens')
+get groupId in web portal (in gitlab it is disaplyed below group name)
+in bash (with jq installed) :
+```
+TOKEN="yourtoken"
+for repo in $(curl -s --header "PRIVATE-TOKEN: $TOKEN" https://<your-host>/api/v4/groups/<group_id> | jq -r ".projects[].ssh_url_to_repo"); do git clone $repo; done;
+```
+
+To include subgroups add include_subgroups=true query param like
+To request clone with  http url use : http_url_to_repo instead of ssh_url_to_repo
+
 
 
