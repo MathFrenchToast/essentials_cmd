@@ -3,6 +3,10 @@
 ## get linux version
 cat /etc/issue
 
+## check port status
+logged on the machine : `netstat -tuplen | grep {port_nb}`
+from another machine : `nmap -p{port_nb} {server_ip}` e.g. : nmap -p3306 192.168.100.10
+
 ## assign default value to a var if not defined
 `FOO="${MYVAR:=default}"`  If MYVAR not set or null, set it to default.
 note : 
