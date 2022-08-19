@@ -1,11 +1,9 @@
 # MySQL Essentials
 
 # show all users
-e.g. to adjust grants
-SELECT user,host FROM mysql.user;
+e.g. to adjust grants : `SELECT user,host FROM mysql.user;`
 
-show grant of a user
- SHOW GRANTS FOR '{username}'@'{ip}';
+show grant of a user (using the data read above) : `SHOW GRANTS FOR '{username}'@'{ip}';`
  
 # create user and grant
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM 
@@ -22,12 +20,15 @@ other usefull privileges are :
 * ALTER
 
 delete a user :
-DROP USER '{username}'@'{ip}';
+`DROP USER '{username}'@'{ip}';`
 
-change user password
+change user password :
 ALTER USER '{username}'@'{ip}' IDENTIFIED BY '{auth_string}';
 
-exemple : ALTER USER 'jeffrey'@'localhost'  IDENTIFIED BY 'new_password'
+exemple : `ALTER USER 'jeffrey'@'localhost'  IDENTIFIED BY 'new_password'`
+
+create a second admin (beside the root user create when installing), only from local network :
+`GRANT ALL PRIVILEGES ON *.* TO 'admin'@'192.168.0.0/255.255.255.0' IDENTIFIED BY 'adminpwd';`
 
 # get Mysql Version
 SHOW VARIABLES LIKE "%version%";
@@ -47,7 +48,7 @@ SET GLOBAL general_log = 'ON';
 SELECT table_name FROM information_schema.tables
 WHERE table_schema = 'your_database_name';
 
-to add a condition on 
+to add a condition on check column on  `describe information_schema.tables`
 
 
 # using the mysql client configurator
