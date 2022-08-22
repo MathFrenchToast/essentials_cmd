@@ -22,3 +22,21 @@ kubectl set image deployments/{deploymentname} {containername}={newfullimgname} 
 kubectl get pod -n $NAMESPACENAME | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n $NAMESPACENAME
 
 
+# move configmap or secret from one namespace to another
+```
+CONFIGMAP=***configmap name**
+FROMNS=**src ns***
+TONS=***dest ns***
+
+kubectl get cm $CONFIGMAP --namespace=$FROMNS -o yaml \
+  | sed "s/namespace: $FROMNS/namespace: $TONS/" \
+  | kubectl create -f -  
+```
+
+same for a secret : 
+```
+SECRETNAME=***secretname***
+kubectl get secret $SECRETNAME --namespace=$FROMNS -o yaml \
+  | sed "s/namespace: $FROMNS/namespace: $TONS/" \
+  | kubectl create -f -
+ ```
