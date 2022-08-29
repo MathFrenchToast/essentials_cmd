@@ -4,8 +4,8 @@
 restart deployment in place. Note : this suppose that yaml use image:pull-always \
 `kubectl rollout restart deployment {deploymentname}`
  
-change image => this will lead to a rollout \
-`kubectl set image deployments/{deploymentname} {containername}={newfullimgname}`
+change image with a entry in history (record option) => this will lead to a rollout \
+`kubectl set image deployments/{deploymentname} {containername}={newfullimgname}` --record
 
 # rollback a deployment
 `kubectl rollout undo deployment {deploymentname}`
