@@ -53,11 +53,13 @@ to add a condition on check column on  `describe information_schema.tables`
 
 # using the mysql client configurator
 Create a new config with
-  mysql_config_editor set --login-path={setname}  --host=localhost --user=$USERNAME --password
+`mysql_config_editor set --login-path={setname}  --host=localhost --user=$USERNAME --password`
 enter the passwd and save
-then to connect
-  mysql --login-path={name setted}
+then to connect with 
+`mysql --login-path={name setted}`
 to list all configs
+`mysql_config_editor print --all`
+
    
 
 # size of the database
