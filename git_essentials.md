@@ -140,11 +140,11 @@ for a local repo
 first create on Gitlab an empty project
 cd in the directory
 then 
-`git init`
-`git remote add origin {here you git url}`
-`git add .`
-`git commit -m "Initial commit"
-`git push -u origin master`
+`git init`  
+`git remote add origin {here you git url}`  
+`git add .`  
+`git commit -m "Initial commit"  
+`git push -u origin master`  
 
 for a remote repo see :
 https://superuser.com/questions/1412078/bring-a-local-folder-to-remote-git-repo/1412081
