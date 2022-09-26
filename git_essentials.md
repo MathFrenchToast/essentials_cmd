@@ -37,6 +37,13 @@ then
 list also the remote
 `git branch -r`
 
+## store your credentials
+Store them on disk :
+`git config --global credential.helper store` next time you enter your credentials they will be cached
+
+Store them for your current terminal session (more secure but less convenient)
+`git config --global credential.helper cache`
+
 ## get status 
 `git status`
 
