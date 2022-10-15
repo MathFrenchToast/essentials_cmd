@@ -5,7 +5,7 @@ restart deployment in place. Note : this suppose that yaml use image:pull-always
 `kubectl rollout restart deployment $DEPLOYMENTNAME`
  
 change image with a entry in history (record option) => this will lead to a rollout \
-`kubectl set image deployments/$DEPLOYMENTNAME $CONTAINERNAME=$IMAGE` --record
+`kubectl set image deployments/$DEPLOYMENTNAME $CONTAINERNAME=$IMAGE --record`  
 equivalent to :   
 `kubectl patch deployment $DEPLOYMENTNAME --patch "spec:\n template:\n  spec:\n   containers:\n   - name: $CONTAINERNAME\n     image: $IMAGE"`  
 
