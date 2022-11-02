@@ -1,7 +1,8 @@
 # linux and bash essentials
 
 ## get linux version
-cat /etc/issue
+`cat /etc/issue` or  
+alternative : `hostnamectl`
 
 ## check port status
 logged on the machine : `netstat -tuplen | grep {port_nb}`
