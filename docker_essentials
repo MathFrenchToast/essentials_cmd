@@ -1,0 +1,4 @@
+# Docker essentials commands
+
+## run image and use a shell
+`docker run -it <image> sh`
