@@ -37,8 +37,10 @@ note :
 myvar=$(command here)
 
 ## use a counter
+```
 mycounter=0
 mycounter=$((mycounter+1))
+```
 
 note : here ((...)) is used for artihmetic expansion (see alos let command)
 
