@@ -1,0 +1,18 @@
+# Bash to PowerShell
+
+Sometimes you need to live your favorite tool to use a lesser loved one...
+
+## GREP => Select-String
+
+Basic usage:
+`grep <searchedString> <file>`
+`Select-String <searchedString> <file>`  
+
+*searchedString* can be a regexp 
+
+to search lines that do not contains use `-NotMatch` option  
+`grep -v <searchedString> <file>`
+`Select-String -NotMatch <searchedString> <file>`  
+
+
+
