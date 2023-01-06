@@ -1,4 +1,20 @@
 # Docker essentials commands
 
-## run image and use a shell
-`docker run -it <image> sh`
+## run image
+simple
+`docker run <image:tag>`  
+
+in background (with -d options)
+`docker run -d <image:tag>`  
+
+run and use a shell inside container (with -it suppose sh is availabe)
+`docker run -it <image> sh`  
+
+
+run image with env var
+```docker run \
+ -e <var1name>=<var1value> \
+ -e <var2name>=<var2value> \
+ <image:tag> 
+```
+
