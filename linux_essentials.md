@@ -23,6 +23,8 @@ add user to sudo/admin:
  ```
 disconnect/reconnect as k1001
 
+## switch to azerty keyboard
+`loadkeys fr` (as root)  
 
 ## check port status
 logged on the machine : `netstat -tuplen | grep {port_nb}`
