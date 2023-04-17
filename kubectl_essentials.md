@@ -45,3 +45,32 @@ kubectl get secret $SECRETNAME --namespace=$FROMNS -o yaml \
   | sed "s/namespace: $FROMNS/namespace: $TONS/" \
   | kubectl create -f -
  ```
+ 
+# simple templating with env var and envsubst
+
+Suppose we have many envvar defined  
+you start by loading an env file dedicated to your environment : `. myenvfile.env`  
+Now you can use a parametrized deployment file : `envsubst < deployment.yml  | kubectl -n adelyadev-be-srv apply -f -`
+deployment.yml example (stored in your project git repo):
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myservice
+  labels:
+    app: myservice
+spec:
+  replicas: $NBREPLICA
+  selector:
+    matchLabels:
+      app: myservice
+  template:
+    metadata:
+      labels:
+        app: myservice
+    spec:
+      containers:
+      - name: formervaluessrv
+        image: $ACR_FULLNAME/myservice:$TAG
+        imagePullPolicy: Always  
+```
