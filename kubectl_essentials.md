@@ -50,7 +50,7 @@ kubectl get secret $SECRETNAME --namespace=$FROMNS -o yaml \
 
 Suppose we have many envvar defined  
 you start by loading an env file dedicated to your environment : `. myenvfile.env`  
-Now you can use a parametrized deployment file : `envsubst < deployment.yml  | kubectl -n adelyadev-be-srv apply -f -`
+Now you can use a parametrized deployment file : `envsubst < deployment.yml  | kubectl -n mynamespace apply -f -`
 deployment.yml example (stored in your project git repo):
 ```
 apiVersion: apps/v1
