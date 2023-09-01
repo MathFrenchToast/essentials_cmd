@@ -1,17 +1,18 @@
 # MySQL Essentials
 
+This short recipes applies to mysql database management 5.7 and 8.0
+
 # show all users
 e.g. to adjust grants : `SELECT user,host FROM mysql.user;`
 
 show grant of a user (using the data read above) : `SHOW GRANTS FOR '{username}'@'{ip}';`
  
 # create user and grant
-REVOKE ALL PRIVILEGES, GRANT OPTION FROM 
-GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO '{username}'@'{ip}';
-
+```
 CREATE USER '{username}'@'{ip}' IDENTIFIED BY '{password}}';
 GRANT SELECT, INSERT, UPDATE, DELETE ON {dbname}.* TO '{username}'@'{ip}';
 flush privileges;
+```
 
 other usefull privileges are :
 * CREATE, DROP to enable create and drop table_name
@@ -19,11 +20,17 @@ other usefull privileges are :
 * LOCK TABLES
 * ALTER
 
-delete a user :
+Revoke privileges
+```
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 
+GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO '{username}'@'{ip}';
+```
+
+delete a user:  
 `DROP USER '{username}'@'{ip}';`
 
-change user password :
-ALTER USER '{username}'@'{ip}' IDENTIFIED BY '{auth_string}';
+change user password:  
+`ALTER USER '{username}'@'{ip}' IDENTIFIED BY '{auth_string}';`
 
 exemple : `ALTER USER 'jeffrey'@'localhost'  IDENTIFIED BY 'new_password'`
 
@@ -53,23 +60,23 @@ to add a condition on check column on  `describe information_schema.tables`
 
 # using the mysql client configurator
 Create a new config with
-`mysql_config_editor set --login-path={setname}  --host=localhost --user=$USERNAME --password`
+`mysql_config_editor set --login-path={configname}  --host=localhost --user=$USERNAME --password`
 enter the passwd and save
-then to connect with 
-`mysql --login-path={name setted}`
-to list all configs
+then to connect with  
+`mysql --login-path={configname}`
+to list all configs:  
 `mysql_config_editor print --all`
-
    
-
-# size of the database
+# size
+## size of the database
 SELECT table_schema "DB Name",
         ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB Size in MB" 
 FROM information_schema.tables 
 GROUP BY table_schema; 
 
-# size tables
-set @schema='monschema';
+## size tables
+```
+set @schema='mychema';
 
 SELECT
   TABLE_NAME AS `Table`,
@@ -81,6 +88,19 @@ WHERE
 ORDER BY
   (DATA_LENGTH + INDEX_LENGTH)
 DESC;
+```
+
+# processes and locks
+
+## list processes
+
+`show [full] processlist;`   
+or for more control on result:  
+`SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST where info is not null;`  
+
+## lock tables
+
+SHOW OPEN TABLES IN {db_name} WHERE in_use >= 1 ;
 
 # reset root password
 https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html
@@ -98,10 +118,11 @@ using MysqlDump as of v.8 add  --column-statistics=0 flag
 
 
 # work with transaction
-first disable autocommit,
-then start tx, 
-run your sql stmt
-close the tx with commit (ok) or rollback (ko)
+steps:  
+- first disable autocommit,
+- then start tx, 
+- run your sql stmt
+- close the tx with commit (ok) or rollback (ko)
 ```
 SET autocommit = 0;
 START TRANSACTION;
