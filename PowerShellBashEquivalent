@@ -1,6 +1,16 @@
 # Bash to PowerShell
 
-Sometimes you need to live your favorite tool to use a lesser loved one...
+Sometimes you need to leave your favorite tool to use a lesser loved one...
+
+## variable and env vars
+
+read:
+`$<variable-name>`
+`$Env:<variable-name>`
+
+set:
+`$<variable-name>=<var value>`
+`$Env:<variable-name>=<var value>`
 
 ## GREP => Select-String
 
