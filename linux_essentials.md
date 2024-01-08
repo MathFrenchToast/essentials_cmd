@@ -23,6 +23,12 @@ add user to sudo/admin:
  ```
 disconnect/reconnect as k1001
 
+run a command as another user (two syntax):
+```
+sudo runuser -l  userNameHere -c 'command arg1 arg2'
+sudo runuser -u user -- command1 arg1 arg2
+``` 
+
 ## switch to azerty keyboard
 `loadkeys fr` (as root)  
 
