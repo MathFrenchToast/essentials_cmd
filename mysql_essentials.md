@@ -130,4 +130,13 @@ START TRANSACTION;
 COMMIT;
 ```
 
+# debug last foreign key failure
+Thanks to the return of innodb status, there is a section with all the info needed:
+```
+------------------------
+LATEST FOREIGN KEY ERROR
+------------------------
+```
+a quick grep: `mysql -e "show engine innodb status;" | grep -A13 "LATEST FOREIGN KEY ERROR"`
+
 
