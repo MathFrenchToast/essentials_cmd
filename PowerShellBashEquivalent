@@ -9,8 +9,24 @@ read:
 `$Env:<variable-name>`
 
 set:
-`$<variable-name>=<var value>`
+`$<variable-name>=<numerical value>`
+`$<variable-name>="<text value>"`
 `$Env:<variable-name>=<var value>`
+
+## multi line command
+
+
+| bash | powershell
+|:-----|:----------|
+| \ | \` |
+
+exemple:
+```
+docker run `
+ -env var1=val1 `
+myimage:latest
+```
+
 
 ## GREP => Select-String
 
