@@ -18,3 +18,9 @@ run image with env var
  <image:tag> 
 ```
 
+## run a cronjob manually and immediately
+
+use: `kubectl create job` with the cronjob ref and a job name
+`kubectl create job --from cronjob/nameofthecronjob nameofyourjob`
+
+to audit output, find pod related to job (name start with ht provided name)
