@@ -10,11 +10,11 @@ I found that there is an (official prompt part of git packages)[https://github.c
 
 
 Add this to your ~/.bashrc:
-
+```
 source /etc/bash_completion.d/git-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ '
-
+``` 
 from:
 
 https://stackoverflow.com/questions/44237255/automatic-display-of-git-status-in-linux-bash/66689916#66689916
