@@ -2,6 +2,52 @@ A logbook on small findings techwise
 ====================================
 
 ---
+# reset a WSL distro
+
+in Powershell
+
+```
+wsl --list  
+wsl --unregister DISTRO-NAME
+```
+
+This will remove the virtual filesystem.
+
+you can check with `wsl --list` that the distro is no longer there
+Then you can on the Windows store, relaucnh it without re-downloading it
+
+
+BTW, you can (should ?) make a backup of your vm first ((doc)[https://learn.microsoft.com/en-us/windows/wsl/basic-commands#import-and-export-a-distribution]) just in case
+```
+wsl --shutdown
+wsl --export <Distribution Name> <FileName>
+```
+
+you'll be able to restore it with: `wsl --import <Distribution Name> <InstallLocation> <FileName>`  
+where `<InstallLocation>` enable yout to define where it will be installed instead of the default: %localappdata%\Packages
+
+----
+
+# Docker python with gui 
+
+## on windows
+
+You will need a X server. I recommend  (vcxsrv)[https://sourceforge.net/projects/vcxsrv/]  
+(other popular choice is install xming)
+upon installation allow firewall rule.
+
+get you lan IPv4 by running `ipconfig`  
+in the example below mine was: 192.168.10.119  
+
+run your docker file with:
+`docker run -e DISPLAY=192.168.10.119:0.0 --network=host <<imagename>>`
+
+## on wsl
+
+`export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0`  
+docker run -e DISPLAY=$DISPLAY --network=host  
+
+---
 # Git status and branch in prompt (WSL ubuntu)
 
 I used to have a hoem made shell method in my bashrc to find current branch status and add it to the shell prompt. 
