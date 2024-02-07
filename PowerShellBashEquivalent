@@ -27,6 +27,12 @@ docker run `
 myimage:latest
 ```
 
+## chaining commands
+
+in PowerShell, use a semicolon to chain commands :
+`ipconfig /release ; ipconfig /renew `  
+Use the `&&` or `||`operators to execute conditionnaly second command.
+
 
 ## GREP => Select-String
 
@@ -39,6 +45,7 @@ Basic usage:
 to search lines that do not contains use `-NotMatch` option  
 `grep -v <searchedString> <file>`
 `Select-String -NotMatch <searchedString> <file>`  
+
 
 
 
