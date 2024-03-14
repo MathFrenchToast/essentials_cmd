@@ -46,6 +46,11 @@ to search lines that do not contains use `-NotMatch` option
 `grep -v <searchedString> <file>`
 `Select-String -NotMatch <searchedString> <file>`  
 
+## rm -rf
+
+`rm -rf <pathto-remove>`
+`Remove-Item -Force -Recurse -Path "<pathto-remove>"`
+
 
 
 
