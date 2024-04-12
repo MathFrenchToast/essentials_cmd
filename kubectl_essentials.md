@@ -75,3 +75,11 @@ spec:
         image: $ACR_FULLNAME/myservice:$TAG
         imagePullPolicy: Always  
 ```
+
+# for loop with jq to automat namespace wide action
+
+Here an example to scale down all the deployments
+```
+export NS=mynamespace
+for DEP in $(k -n $NS get deployment -o json | jq -r .items[].metadata.name); do k -n $NS scale deployment $DEP --replicas=0; done
+```
