@@ -83,3 +83,8 @@ Here an example to scale down all the deployments
 export NS=mynamespace
 for DEP in $(k -n $NS get deployment -o json | jq -r .items[].metadata.name); do k -n $NS scale deployment $DEP --replicas=0; done
 ```
+
+# manually run a job from a cronjob
+
+Your deployment is a cronjob but you want to launch it now (for testing maybe) ?  
+`kubectl create job --from=cronjob/$CRONJOBNAME $ANAMEGIVENBYYOUFORTHISEXEC`
