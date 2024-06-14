@@ -129,6 +129,21 @@ START TRANSACTION;
 -- here your sql stmt
 COMMIT;
 ```
+# trully non blocking request
+
+set the transaction isolation to dirty read and set a maximum exec time (in second)
+```
+SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+SELECT 
+ /*+ MAX_EXECUTION_TIME(600000) */
+  col
+FROM table
+WHERE
+  complex-where-clause;
+```
+Max exec time ca be set at server level with var:
+`SET GLOBAL MAX_EXECUTION_TIME=600000; `
+
 
 # debug last foreign key failure
 Thanks to the return of innodb status, there is a section with all the info needed:
