@@ -88,3 +88,9 @@ for DEP in $(k -n $NS get deployment -o json | jq -r .items[].metadata.name); do
 
 Your deployment is a cronjob but you want to launch it now (for testing maybe) ?  
 `kubectl create job --from=cronjob/$CRONJOBNAME $ANAMEGIVENBYYOUFORTHISEXEC`
+
+# revoke current kubectl access
+
+To cleanly 'logout' from your cluster:  
+`kubectl config unset current-context`  
+This will prevent any further unwanted operations
